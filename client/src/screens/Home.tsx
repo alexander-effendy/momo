@@ -64,7 +64,7 @@ const Home = () => {
 
   return (
     <div 
-      className="w-screen h-screen bg-cover bg-center bg-no-repeat grid place-items-center overflow-hidden"
+      className="full-height w-screen h-screen bg-cover bg-center bg-no-repeat grid place-items-center overflow-hidden"
       style={{ 
         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url(${ghibliForest})`,        
       }}
