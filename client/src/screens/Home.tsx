@@ -64,11 +64,9 @@ const Home = () => {
 
   return (
     <div 
-      className="bg-[#bdfda2] w-screen h-screen bg-cover bg-no-rpeat bg-center grid place-items-center font-bold text-2xl overflow-hidden"
+      className="w-screen h-screen bg-cover bg-center bg-no-repeat grid place-items-center overflow-hidden"
       style={{ 
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url(${ghibliForest})`,
-        // backgroundSize: '40%' 
-        
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url(${ghibliForest})`,        
       }}
     >
       <Dialog>
