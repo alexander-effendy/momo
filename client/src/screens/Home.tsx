@@ -10,12 +10,6 @@ import {
 import { Button } from '@/components/ui/button';
 
 import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card"
-
-import {
   Dialog,
   DialogContent,
   DialogDescription,
