@@ -10,13 +10,25 @@ import {
 import { Button } from '@/components/ui/button';
 
 import LeafIcon from '@/assets/LeafIcon';
+// import BlueForest from '@/assets/BlueForest.png';
+// import SatelliteDish from '@/assets/SatelliteDish.png';
+// import Dog from '@/assets/Dog.png';
+// import Koala from '@/assets/Koala.png';
+// import CalmPyramid from '@/assets/CalmPyramid.jpeg';
+import WatermelonCat from '@/assets/WatermelonCat.png';
 
 const Home = () => {
   return (
-    <div className="w-screen h-screen grid place-items-center font-bold text-2xl">
-      Hello There! This is Home!
+    <div 
+      className="bg-[#bdfda2] w-screen h-screen bg-cover bg-no-repeat bg-center grid place-items-center font-bold text-2xl"
+      style={{ 
+        backgroundImage: `url(${WatermelonCat})`,
+        backgroundSize: '70%' 
+        
+      }}
+    >
       
-      <Button className="absolute left-5 top-5 border-[1px] bg-[] hover:bg-gray-200 select-none rounded-[10px]">Pomodoro</Button>
+      <Button className="absolute left-5 top-5 text-green-800 border-[2px] border-green-500 hover:bg-green-500 hover:text-white select-none rounded-[10px]">Pomodoro</Button>
       <Sheet>
         <SheetTrigger>
           <LeafIcon />
@@ -30,7 +42,6 @@ const Home = () => {
           </SheetHeader>
         </SheetContent>
       </Sheet>
-      
     </div>
   )
 }
