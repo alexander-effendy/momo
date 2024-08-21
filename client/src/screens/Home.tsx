@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 // import ReactPlayer from 'react-player';
 import dragon from '@/assets/songs/coc-dragon-palace.mp3'
 import Lottie from 'lottie-react';
-import leaf from '@/assets/leaf.json';
+import leaf from '@/assets/svg/leaf.json';
 
 import {
   Sheet,
