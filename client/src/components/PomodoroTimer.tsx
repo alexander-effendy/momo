@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 // import AlienIcon from '@/assets/AlienIcon';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const PomodoroTimer = () => {
+
+  const mobile = useMediaQuery('(max-width:430px)');
 
   // usestates
   const [minutes, setMinutes] = useState<number>(25);
@@ -67,16 +70,61 @@ const PomodoroTimer = () => {
     }
   }
 
+  const totalTime = 25 * 60; // (25 times 60 seconds)
+
+  const calculateProgress = () => {
+    const currentTime = minutes * 60 + seconds;
+    return ((totalTime - currentTime) / totalTime) * 100;
+  }
 
   return (
     <div 
-      className="flex flex-col select-none"
+      className={`flex flex-col select-none ${mobile && 'mt-[-20px]'}`}
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
     >
-      <div className="bg-background border-[2px] border-white rounded-[2000px] size-[250px] lg:size-[350px] select-none grid place-items-center text-white text-[60px] lg:text-[80px]">
-        {timeParser(minutes)} : {timeParser(seconds)}
+
+      <div className="relative">
+        <svg className="w-[250px] h-[250px] lg:w-[350px] lg:h-[350px]">
+          <circle
+            className="text-gray-400"
+            strokeWidth="3"
+            stroke="currentColor"
+            fill="transparent"
+            r="120"
+            cx="125"
+            cy="125"
+          />
+          <circle
+            className="text-white"
+            strokeWidth="4.5"
+            strokeLinecap="round"
+            stroke="currentColor"
+            fill="transparent"
+            r="120"
+            cx="125"
+            cy="125"
+            style={{
+              strokeDasharray: 2 * Math.PI * 120,
+              strokeDashoffset: (2 * Math.PI * 120) - (calculateProgress() / 100) * (2 * Math.PI * 120),
+              transition: 'stroke-dashoffset 1s linear',
+              transform: 'rotate(-90deg)',
+              transformOrigin: 'center'
+            }}
+          />
+          <text
+            x="50%"
+            y="50%"
+            textAnchor="middle"
+            dy="0.3em"
+            className="text-white text-[60px] lg:text-[80px]"
+            fill="white"
+          >
+            {timeParser(minutes)} : {timeParser(seconds)}
+          </text>
+        </svg>
       </div>
+
       <div className={`transition-opacity duration-1000 ${isHover ? 'opacity-100 visible' : 'opacity-0'} flex w-full items-center justify-center mt-[20px] gap-[12px]`}>
         <Button className="bg-white rounded-[10px] hover:bg-gray-300" onClick={() => handleStartorPause()}>{checkResume() ? 'Resume' : isActive ? 'Pause' : 'Start'}</Button>
         <Button className={`${isActive || isPause ? '' : !isActive && !isPause ? 'hidden' : 'hidden'} bg-white rounded-[10px] hover:bg-gray-300`} onClick={() => handleReset()}>Reset</Button>
@@ -89,5 +137,3 @@ const PomodoroTimer = () => {
 }
 
 export default PomodoroTimer;
-
-// className={`transition-opacity duration-1000 ${isHover ? 'opacity-100 visible' : 'opacity-0'} flex w-full items-center justify-center mt-[20px] gap-[12px]`}

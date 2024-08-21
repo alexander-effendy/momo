@@ -67,7 +67,7 @@ const Home = () => {
     >
       <Dialog>
         <DialogTrigger>
-          <Button className="absolute left-5 top-5 border-[2px] border-white hover:text-black hover:bg-white text-white select-none rounded-[10px]">Pomodoro</Button>
+          <Button className="absolute left-5 top-5 border-[2px] border-white hover:text-black hover:bg-white text-white select-none rounded-[10px]">Progress</Button>
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
