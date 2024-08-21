@@ -7,7 +7,6 @@ import {
   SheetContent,
   SheetDescription,
   SheetHeader,
-  SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
 
@@ -55,6 +54,10 @@ const Home = () => {
     }
   }
 
+  const handleButtonClick = () => {
+    window.open('https://alexandereffendy.com', '_blank');
+  };
+
   return (
     <div 
       className="full-height w-screen h-screen bg-cover bg-center bg-no-repeat grid place-items-center overflow-hidden"
@@ -82,11 +85,21 @@ const Home = () => {
         </SheetTrigger>
         <SheetContent>
           <SheetHeader>
-            <SheetTitle>nehimomo</SheetTitle>
+            {/* <SheetTitle>nehimomo</SheetTitle> */}
             <SheetDescription>
-              This web app is designed to help relax and focus.
+              {/* This web app is designed to help relax and focus. */}
             </SheetDescription>
           </SheetHeader>
+          {/* account */}
+          <section className="flex flex-col justify-between p-[30px] h-full text-white select-none">
+            <section className="grid place-items-center">
+              <Button className="hover:underline">Profile</Button>
+              <Button className="hover:underline">Songs</Button>
+            </section>
+            <Button className="hover:underline" onClick={() => handleButtonClick()}>alexandereffendy.com</Button>
+          </section>
+          {/* songs */}
+          {/* website portfolio */}
         </SheetContent>
       </Sheet>
       <audio ref={audioRef} src={dragon} preload="auto" loop={true}/>
