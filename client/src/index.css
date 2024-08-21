@@ -19,3 +19,101 @@ body, html {
   height: calc(var(--vh, 1vh) * 100);
   overflow: hidden;
 }
+
+@keyframes colorFade {
+  0% {
+    color: #333; /* Very deep gray */
+  }
+  5% {
+    color: #444; /* Deep gray */
+  }
+  10% {
+    color: #555; /* Medium-deep gray */
+  }
+  15% {
+    color: #666; /* Medium gray */
+  }
+  20% {
+    color: #777; /* Medium-light gray */
+  }
+  25% {
+    color: #888; /* Light gray */
+  }
+  30% {
+    color: #999; /* Lighter gray */
+  }
+  35% {
+    color: #aaa; /* Very light gray */
+  }
+  40% {
+    color: #bbb; /* Almost white */
+  }
+  45% {
+    color: #ccc; /* Near white */
+  }
+  50% {
+    color: #fff; /* White */
+  }
+  55% {
+    color: #ccc; /* Near white */
+  }
+  60% {
+    color: #bbb; /* Almost white */
+  }
+  65% {
+    color: #aaa; /* Very light gray */
+  }
+  70% {
+    color: #999; /* Lighter gray */
+  }
+  75% {
+    color: #888; /* Light gray */
+  }
+  80% {
+    color: #777; /* Medium-light gray */
+  }
+  85% {
+    color: #666; /* Medium gray */
+  }
+  90% {
+    color: #555; /* Medium-deep gray */
+  }
+  95% {
+    color: #444; /* Deep gray */
+  }
+  100% {
+    color: #333; /* Very deep gray */
+  }
+}
+
+.animate-colorFade {
+  animation: colorFade 5s infinite;
+}
+
+.leaf-icon {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  transition: stroke 0.3s ease;
+}
+
+.leaf-icon:hover {
+  stroke: #22c55e; /* green-500 in Tailwind */
+}
+
+.song-icon {
+  position: absolute;
+  bottom: 1.25rem;
+  right: 1.25rem;
+  transition: stroke 0.3s ease;
+}
+
+.song-icon:hover {
+  stroke: #22c55e; /* green-500 in Tailwind */
+}
+
+.jersey-10-regular {
+  font-family: "Jersey 10", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}

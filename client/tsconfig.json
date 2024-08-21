@@ -30,6 +30,7 @@
   "include": [
     "src",
     "src/**/*",
-    "src/asset/**/*.json"
+    "src/assets/**/*.json",
+    "src/assets/svg/*.json"
   ]
 }
