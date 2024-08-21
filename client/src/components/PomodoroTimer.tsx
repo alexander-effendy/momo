@@ -67,13 +67,14 @@ const PomodoroTimer = () => {
     }
   }
 
+
   return (
     <div 
       className="flex flex-col select-none"
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
     >
-      <div className="bg-background border-[2px] border-white rounded-[2000px] size-[250px] lg:size-[350px] select-none grid place-items-center text-white text-[80px]">
+      <div className="bg-background border-[2px] border-white rounded-[2000px] size-[250px] lg:size-[350px] select-none grid place-items-center text-white text-[60px] lg:text-[80px]">
         {timeParser(minutes)} : {timeParser(seconds)}
       </div>
       <div className={`transition-opacity duration-1000 ${isHover ? 'opacity-100 visible' : 'opacity-0'} flex w-full items-center justify-center mt-[20px] gap-[12px]`}>
