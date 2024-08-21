@@ -35,13 +35,6 @@ import {
 
 import LeafIcon from '@/assets/LeafIcon';
 import SongIcon from '@/assets/SongIcon';
-// import BlueForest from '@/assets/BlueForest.png';
-// import SatelliteDish from '@/assets/SatelliteDish.png';
-// import Dog from '@/assets/Dog.png';
-// import Koala from '@/assets/Koala.png';
-// import CalmPyramid from '@/assets/CalmPyramid.jpeg';
-// import WatermelonCat from '@/assets/WatermelonCat.png';
-// import ghibliPlane from '@/assets/ghibliPlane.jpg';
 import ghibliForest from '@/assets/ghibliForest.jpg';
 
 import PomodoroTimer from '@/components/PomodoroTimer';
