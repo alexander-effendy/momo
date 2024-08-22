@@ -10,7 +10,7 @@ const About = () => {
     <div className="w-screen bg-[#061b21] oveflow-y-auto your-scroll-container">
       <MaxWidthWrapper className=""> 
         <div className="text-2xl text-white bg-yellow-00">
-          <section className="bg-blue-s200 mt-[150px]">
+          <section className="bg-blue-s200 mt-[110px]">
             <div className="about-header">About <span className="jersey-10-big">MOMO</span></div>
             <div className="about-paragraph">Welcome to Momo, your sanctuary for calm and focus.</div>
             <div className="about-paragraph">
@@ -53,7 +53,7 @@ const About = () => {
 
             </div>
           </section>
-          <Button onClick={() => navigate('/')} className="absolute top-5 left-5 bg-[#566d57] hover:bg-[#374637] transition:duration-3000 rounded-xl">Back to home</Button>
+          <Button onClick={() => navigate('/')} className="absolute top-5 left-10 bg-[#566d57] hover:bg-[#374637] transition:duration-3000 rounded-xl">Back to home</Button>
         </div>
       </MaxWidthWrapper>
     </div>

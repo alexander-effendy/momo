@@ -149,7 +149,7 @@ body, html {
 }
 
 .about-paragraph {
-  text-align: justify;
+  /* text-align: justify; */
 }
 
 .your-scroll-container {
