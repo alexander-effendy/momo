@@ -6,6 +6,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 const PomodoroTimer = () => {
 
   const mobile = useMediaQuery('(max-width:430px)');
+  const desktop = useMediaQuery('(min-width:1023px)');
 
   // usestates
   const [minutes, setMinutes] = useState<number>(25);
@@ -70,12 +71,16 @@ const PomodoroTimer = () => {
     }
   }
 
-  const totalTime = 25 * 60; // (25 times 60 seconds)
+  const totalTime = 25 * 60;
 
   const calculateProgress = () => {
     const currentTime = minutes * 60 + seconds;
     return ((totalTime - currentTime) / totalTime) * 100;
-  }
+  };
+
+  const radius = desktop ? '160' : '120';
+  const cx = desktop ? '175' : '125';
+  const cy = desktop ? '175' : '125';
 
   return (
     <div 
@@ -83,17 +88,16 @@ const PomodoroTimer = () => {
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
     >
-
-      <div className="relative">
+      <div className="relative bg-background">
         <svg className="w-[250px] h-[250px] lg:w-[350px] lg:h-[350px]">
           <circle
             className="text-gray-400"
             strokeWidth="3"
             stroke="currentColor"
             fill="transparent"
-            r="120"
-            cx="125"
-            cy="125"
+            r={radius}
+            cx={cx}
+            cy={cy}
           />
           <circle
             className="text-white"
@@ -101,12 +105,12 @@ const PomodoroTimer = () => {
             strokeLinecap="round"
             stroke="currentColor"
             fill="transparent"
-            r="120"
-            cx="125"
-            cy="125"
+            r={radius}
+            cx={cx}
+            cy={cy}
             style={{
-              strokeDasharray: 2 * Math.PI * 120,
-              strokeDashoffset: (2 * Math.PI * 120) - (calculateProgress() / 100) * (2 * Math.PI * 120),
+              strokeDasharray: 2 * Math.PI * Number(radius),
+              strokeDashoffset: (2 * Math.PI * Number(radius)) - (calculateProgress() / 100) * (2 * Math.PI * Number(radius)),
               transition: 'stroke-dashoffset 1s linear',
               transform: 'rotate(-90deg)',
               transformOrigin: 'center'
