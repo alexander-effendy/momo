@@ -11,8 +11,8 @@ body, html {
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow-x: hidden; /* Prevent horizontal overflow */
-  overflow-y: hidden;
+  overflow-x: hidden;
+  /* overflow-y: hidden; */
 }
 
 .full-height {
@@ -116,4 +116,48 @@ body, html {
   font-family: "Jersey 10", sans-serif;
   font-weight: 400;
   font-style: normal;
+}
+
+.jersey-10-big {
+  font-family: "Jersey 10", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 40px;
+  margin-left: 5px;
+}
+
+.about-header {
+  font-weight: bold;
+  margin-bottom: 25px;
+  margin-top: 23px;
+  font-size: 28px;
+}
+
+.about-paragraph {
+  font-size: 16px;
+  margin-bottom: 20px;
+  line-height: 1.8;
+}
+
+.about-list-bold {
+  font-weight: bold;
+}
+
+.about-paragraph li {
+  padding-left: 2rem; /* Indent the entire list item */
+  text-indent: -1.4rem; /* Pull the first line back */
+}
+
+.about-paragraph {
+  text-align: justify;
+}
+
+.your-scroll-container {
+  height: 100vh; /* Set your desired height */
+  overflow-y: scroll; /* Enable vertical scrolling */
+  scrollbar-width: none; /* Hide scrollbar in Firefox */
+}
+
+.your-scroll-container::-webkit-scrollbar {
+  display: none; /* Hide scrollbar in Chrome, Safari, and Opera */
 }

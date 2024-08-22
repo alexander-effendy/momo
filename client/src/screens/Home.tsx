@@ -39,12 +39,15 @@ import SongIcon from '@/assets/SongIcon';
 import ghibliForest from '@/assets/ghibliForest.jpg';
 
 import PomodoroTimer from '@/components/PomodoroTimer';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  const navigate = useNavigate();
 
   const tooglePlayPause = () => {
     const prevValue = isPlaying;
@@ -75,7 +78,7 @@ const Home = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 5000);
+    }, 2000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -128,7 +131,7 @@ const Home = () => {
             <section className="grid place-items-center">
               <Button className="hover:underline">Profile</Button>
               <Button>
-                <span className="hover:underline">
+                <span className="hover:underline" onClick={() => navigate('./about')}>
                   About <span className="jersey-10-regular text-[20px]">MOMO</span>
                 </span>
               </Button>
