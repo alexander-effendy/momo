@@ -75,7 +75,7 @@ const Home = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 100000);
+    }, 5000);
     return () => clearTimeout(timer);
   }, []);
 

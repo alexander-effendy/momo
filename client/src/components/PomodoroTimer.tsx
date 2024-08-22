@@ -1,19 +1,23 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 // import AlienIcon from '@/assets/AlienIcon';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import bell from '@/assets/songs/bell.mp3';
 
 const PomodoroTimer = () => {
 
+  // use media query!
   const mobile = useMediaQuery('(max-width:430px)');
   const desktop = useMediaQuery('(min-width:1023px)');
 
   // usestates
-  const [minutes, setMinutes] = useState<number>(25);
-  const [seconds, setSeconds] = useState<number>(0);
+  const [minutes, setMinutes] = useState<number>(5);
+  const [seconds, setSeconds] = useState<number>(5);
   const [isActive, setIsActive] = useState<boolean>(false);
   const [isHover, setIsHover] = useState<boolean>(false);
   const [isPause, setIsPause] = useState<boolean>(false);
+
+  const bellRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     let interval: NodeJS.Timeout | undefined;
@@ -33,6 +37,10 @@ const PomodoroTimer = () => {
         } else {
           // decrease seconds
           setSeconds((seconds) => seconds - 1);
+        }
+        // rings bell when 5 minutes and 0 seconds left
+        if (minutes === 5 && seconds === 1) {
+          if (bellRef.current) bellRef.current.play();
         }
       }, 1000)
     } else if (!isActive && (minutes !== 0 || seconds !== 0)) {
@@ -133,8 +141,8 @@ const PomodoroTimer = () => {
         <Button className="bg-white rounded-[10px] hover:bg-gray-300" onClick={() => handleStartorPause()}>{checkResume() ? 'Resume' : isActive ? 'Pause' : 'Start'}</Button>
         <Button className={`${isActive || isPause ? '' : !isActive && !isPause ? 'hidden' : 'hidden'} bg-white rounded-[10px] hover:bg-gray-300`} onClick={() => handleReset()}>Reset</Button>
       </div>
-      
 
+      <audio ref={bellRef} src={bell} />
     </div>
     
   )
