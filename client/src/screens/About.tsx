@@ -7,9 +7,9 @@ const About = () => {
 
   const navigate = useNavigate();
   return (
-    <div className="w-screen bg-[#061b21] your-scroll-container">
-      <MaxWidthWrapper className="your-scroll-container"> 
-        <div className="full-height text-2xl text-white oveflow-y-auto your-scroll-container">
+    <div className="w-screen bg-[#061b21] oveflow-y-auto your-scroll-container">
+      <MaxWidthWrapper className=""> 
+        <div className="text-2xl text-white bg-yellow-00">
           <section className="bg-blue-s200 mt-[150px]">
             <div className="about-header">About <span className="jersey-10-big">MOMO</span></div>
             <div className="about-paragraph">Welcome to Momo, your sanctuary for calm and focus.</div>
@@ -50,10 +50,10 @@ const About = () => {
             </div>
 
             <div className="h-[100px]">
-              
+
             </div>
           </section>
-          <Button onClick={() => navigate('/')} className="absolute top-5 left-5">Back</Button>
+          <Button onClick={() => navigate('/')} className="absolute top-5 left-5 bg-[#566d57] hover:bg-[#374637] transition:duration-3000 rounded-xl">Back to home</Button>
         </div>
       </MaxWidthWrapper>
     </div>
