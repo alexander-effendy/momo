@@ -11,8 +11,8 @@ const PomodoroTimer = () => {
   const desktop = useMediaQuery('(min-width:1023px)');
 
   // usestates
-  const [minutes, setMinutes] = useState<number>(5);
-  const [seconds, setSeconds] = useState<number>(5);
+  const [minutes, setMinutes] = useState<number>(25);
+  const [seconds, setSeconds] = useState<number>(0);
   const [isActive, setIsActive] = useState<boolean>(false);
   const [isHover, setIsHover] = useState<boolean>(false);
   const [isPause, setIsPause] = useState<boolean>(false);
@@ -39,7 +39,7 @@ const PomodoroTimer = () => {
           setSeconds((seconds) => seconds - 1);
         }
         // rings bell when 5 minutes and 0 seconds left
-        if (minutes === 5 && seconds === 1) {
+        if ((minutes === 5 && seconds === 1) || (minutes === 1 && seconds === 1)) {
           if (bellRef.current) bellRef.current.play();
         }
       }, 1000)
