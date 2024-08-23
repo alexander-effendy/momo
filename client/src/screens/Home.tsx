@@ -78,7 +78,7 @@ const Home = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2000);
+    }, 1500);
     return () => clearTimeout(timer);
   }, []);
 
@@ -94,76 +94,82 @@ const Home = () => {
   }
 
   return (
-    <div 
-      className="full-height w-screen h-screen bg-cover bg-center bg-no-repeat grid place-items-center overflow-y-hidden"
-      style={{ 
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url(${ghibliForest})`,        
-      }}
-    >
+    <div className="bg-[#061b21]">
       <LoadingPage />
-      <Dialog>
-        <DialogTrigger>
-          <Button className="absolute left-5 top-5 border-[2px] border-white hover:text-black hover:bg-white text-white select-none rounded-[10px]">Progress</Button>
-        </DialogTrigger>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>We are so sorry!</DialogTitle>
-            <DialogDescription>
-              This feature is not available yet as we are developing the web app. Stay tune!
-            </DialogDescription>
-          </DialogHeader>
-        </DialogContent>
-      </Dialog>
-  
-      <Sheet>
-        <SheetTrigger>
-          <LeafIcon />
-        </SheetTrigger>
-        <SheetContent>
-          <SheetHeader>
-            {/* <SheetTitle>nehimomo</SheetTitle> */}
-            <SheetDescription>
-              {/* This web app is designed to help relax and focus. */}
-            </SheetDescription>
-          </SheetHeader>
-          {/* account */}
-          <section className="flex flex-col justify-between p-[30px] h-full text-white select-none">
-            <section className="grid place-items-center">
-              <Button className="hover:underline">Profile</Button>
-              <Button>
-                <span className="hover:underline" onClick={() => navigate('./about')}>
-                  About <span className="jersey-10-regular text-[20px]">MOMO</span>
-                </span>
-              </Button>
-              <Button className="hover:underline">Songs</Button>
-            </section>
-            <Button className="hover:underline" onClick={() => handleButtonClick()}>alexandereffendy.com</Button>
-          </section>
-          {/* songs */}
-          {/* website portfolio */}
-        </SheetContent>
-      </Sheet>
-      <audio ref={audioRef} src={dragon} preload="auto" loop={true}/>
-      <Drawer>
-        <DrawerTrigger>
-          <SongIcon />
-        </DrawerTrigger>
-        <DrawerContent className="grid place-items-center">
-        <div className="z-[20] fixed bottom-5 right-5 hover:cursor-pointer">
-        <div className="my-auto h-[50px] w-[50px] bg-black" onClick={tooglePlayPause}/>
-      </div>
-        <DrawerHeader>
-        </DrawerHeader>
-        <DrawerFooter>
-        
-        </DrawerFooter>
-        </DrawerContent>
-      </Drawer>
-  
-      <div className="grid place-items-center w-screen h-screen">
-        <PomodoroTimer />
+      <div 
+        className={`${isLoading ? 'opacity-0 bg-[#061b21]' : 'opacity-100'} transition-opacity duration ease-in-out full-height w-screen h-screen bg-cover bg-center bg-no-repeat grid place-items-center overflow-y-hidden`}
+        style={{ 
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url(${ghibliForest})`,        
+        }}
+      >
+      
+        <div className={`${isLoading ? 'opacity-0' : 'opacity-100'} transition-opacity duration ease-in-out`}>
+          <Dialog>
+            <DialogTrigger>
+              <Button className="pomodoro-icon select-none rounded-[10px] hover:bg-[#234121] hover:text-white">Progress</Button>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>We are so sorry!</DialogTitle>
+                <DialogDescription>
+                  This feature is not available yet as we are developing the web app. Stay tune!
+                </DialogDescription>
+              </DialogHeader>
+            </DialogContent>
+          </Dialog>
+      
+          <Sheet>
+            <SheetTrigger>
+              <LeafIcon />
+            </SheetTrigger>
+            <SheetContent>
+              <SheetHeader>
+                {/* <SheetTitle>nehimomo</SheetTitle> */}
+                <SheetDescription>
+                  {/* This web app is designed to help relax and focus. */}
+                </SheetDescription>
+              </SheetHeader>
+              {/* account */}
+              <section className="flex flex-col justify-between p-[30px] h-full text-white select-none">
+                <section className="grid place-items-center">
+                  <Button className="hover:underline">Profile</Button>
+                  <Button>
+                    <span className="hover:underline" onClick={() => navigate('./about')}>
+                      About <span className="jersey-10-regular text-[20px]">MOMO</span>
+                    </span>
+                  </Button>
+                  <Button className="hover:underline">Songs</Button>
+                </section>
+                <Button className="hover:underline" onClick={() => handleButtonClick()}>alexandereffendy.com</Button>
+              </section>
+              {/* songs */}
+              {/* website portfolio */}
+            </SheetContent>
+          </Sheet>
+          <audio ref={audioRef} src={dragon} preload="auto" loop={true}/>
+          <Drawer>
+            <DrawerTrigger>
+              <SongIcon />
+            </DrawerTrigger>
+            <DrawerContent className="grid place-items-center">
+            <div className="z-[20] fixed bottom-5 right-5 hover:cursor-pointer">
+            <div className="my-auto h-[50px] w-[50px] bg-black" onClick={tooglePlayPause}/>
+          </div>
+            <DrawerHeader>
+            </DrawerHeader>
+            <DrawerFooter>
+            
+            </DrawerFooter>
+            </DrawerContent>
+          </Drawer>
+      
+          <div className="grid place-items-center w-screen h-screen">
+            <PomodoroTimer />
+          </div>
+        </div>
       </div>
     </div>
+    
   )
 }
 

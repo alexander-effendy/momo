@@ -86,6 +86,11 @@ body, html {
   }
 }
 
+.duration {
+  transition-duration: 2000ms;
+  animation-duration: 2000ms;
+}
+
 .animate-colorFade {
   animation: colorFade 5s infinite;
 }
@@ -110,6 +115,14 @@ body, html {
 
 .song-icon:hover {
   stroke: #22c55e; /* green-500 in Tailwind */
+}
+
+.pomodoro-icon {
+  position: absolute;
+  top: 1.25rem;
+  left: 1.25rem;
+  transition: background-color 0.7s ease, color 0.5s ease;
+  background-color: white;
 }
 
 .jersey-10-regular {
