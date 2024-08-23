@@ -27,7 +27,7 @@ const About = () => {
             </div>
 
             <div className="about-header">
-              Features
+              Features (IN PROGRESS)
             </div>
 
             {!mobile &&

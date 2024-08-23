@@ -144,25 +144,25 @@ body, html {
   margin-bottom: 25px;
   margin-top: 23px;
   font-size: 28px;
+  cursor: pointer;
 }
 
 .about-paragraph {
   font-size: 16px;
   margin-bottom: 20px;
   line-height: 1.8;
+  cursor: pointer;
 }
 
 .about-list-bold {
   font-weight: bold;
+  cursor: pointer;
 }
 
 .about-paragraph li {
   padding-left: 2rem; /* Indent the entire list item */
   text-indent: -1.4rem; /* Pull the first line back */
-}
-
-.about-paragraph {
-  /* text-align: justify; */
+  cursor: pointer;
 }
 
 .your-scroll-container {
@@ -173,4 +173,15 @@ body, html {
 
 .your-scroll-container::-webkit-scrollbar {
   display: none; /* Hide scrollbar in Chrome, Safari, and Opera */
+}
+
+/* Remove background color and set text color to yellow on selection */
+::selection {
+  background-color: transparent;
+  color: rgb(50, 140, 179); 
+}
+
+::-moz-selection {
+  background-color: transparent;
+  color: yellow;
 }
