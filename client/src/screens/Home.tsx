@@ -110,9 +110,9 @@ const Home = () => {
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>
-                <DialogTitle>We are so sorry!</DialogTitle>
+                <DialogTitle>Stay tuned!</DialogTitle>
                 <DialogDescription>
-                  This feature is not available yet as we are developing the web app. Stay tune!
+                  This feature is not available yet!
                 </DialogDescription>
               </DialogHeader>
             </DialogContent>
