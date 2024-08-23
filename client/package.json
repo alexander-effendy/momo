@@ -12,6 +12,7 @@
   "dependencies": {
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
+    "@kinde-oss/kinde-auth-react": "^4.0.2",
     "@mui/material": "^5.16.7",
     "@radix-ui/react-dialog": "^1.1.1",
     "@radix-ui/react-hover-card": "^1.1.1",

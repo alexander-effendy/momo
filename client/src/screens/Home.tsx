@@ -14,6 +14,8 @@ import {
 
 import { Button } from '@/components/ui/button';
 
+import {useKindeAuth} from "@kinde-oss/kinde-auth-react";
+
 import {
   Dialog,
   DialogContent,
@@ -44,6 +46,10 @@ import { useNavigate } from 'react-router-dom';
 const Home = () => {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  const { login, register } = useKindeAuth();
+
+
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -93,6 +99,9 @@ const Home = () => {
     )
   }
 
+  const handleRegister = () => register();
+  const handleLogin = () => login();
+
   return (
     <div className="bg-[#061b21]">
       <LoadingPage />
@@ -112,7 +121,8 @@ const Home = () => {
               <DialogHeader>
                 <DialogTitle>Stay tuned!</DialogTitle>
                 <DialogDescription>
-                  This feature is not available yet!
+                <Button onClick={() => handleRegister()}>Register</Button>
+                <Button onClick={() => handleLogin()}>Log In</Button>
                 </DialogDescription>
               </DialogHeader>
             </DialogContent>
