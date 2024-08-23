@@ -1,9 +1,13 @@
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
 
+import { useMediaQuery } from '@mui/material';
+
 import MaxWidthWrapper from '@/components/MaxWidthWrapper';
 
 const About = () => {
+
+  const mobile = useMediaQuery('(max-width:430px)');
 
   const navigate = useNavigate();
   return (
@@ -26,12 +30,31 @@ const About = () => {
               Features
             </div>
 
-            <ul className="list-disc list-inside about-paragraph">
-              <li><span className="about-list-bold">Pomodoro Timer</span>: Our timer follows the classic Pomodoro technique, helping you break your work into manageable intervals with built-in breaks to refresh your mind.</li>
-              <li><span className="about-list-bold">Pomodoro Timer</span>: Choose from a selection of beautifully designed backgrounds, each crafted to create a serene atmosphere that aids in concentration and relaxation.</li>
-              <li><span className="about-list-bold">Calming Music</span>: Elevate your focus with our curated playlist of soothing tracks. You can choose the perfect soundtrack for your session, ensuring that your environment is as harmonious as your workflow.</li>
-              <li><span className="about-list-bold">Progress Tracking</span>: Keep track of your study or work sessions effortlessly. Momo allows you to monitor your Pomodoro progress over time, helping you stay on top of your goals and celebrate your achievements.</li>
+            {!mobile &&
+              <ul className="list-disc list-inside about-paragraph">
+                <li><span className="about-list-bold">Pomodoro Timer</span>: Our timer follows the classic Pomodoro technique, helping you break your work into manageable intervals with built-in breaks to refresh your mind.</li>
+                <li><span className="about-list-bold">Pomodoro Timer</span>: Choose from a selection of beautifully designed backgrounds, each crafted to create a serene atmosphere that aids in concentration and relaxation.</li>
+                <li><span className="about-list-bold">Calming Music</span>: Elevate your focus with our curated playlist of soothing tracks. You can choose the perfect soundtrack for your session, ensuring that your environment is as harmonious as your workflow.</li>
+                <li><span className="about-list-bold">Progress Tracking</span>: Keep track of your study or work sessions effortlessly. Momo allows you to monitor your Pomodoro progress over time, helping you stay on top of your goals and celebrate your achievements.</li>
             </ul>
+            }
+
+            {mobile &&
+            <section>
+              <div className="about-paragraph">
+                <span className="about-list-bold">Pomodoro Timer</span>: Our timer follows the classic Pomodoro technique, helping you break your work into manageable intervals with built-in breaks to refresh your mind.
+              </div>
+              <div className="about-paragraph">
+                <span className="about-list-bold">Pomodoro Timer</span>: Choose from a selection of beautifully designed backgrounds, each crafted to create a serene atmosphere that aids in concentration and relaxation.
+              </div>
+              <div className="about-paragraph">
+                <span className="about-list-bold">Calming Music</span>: Elevate your focus with our curated playlist of soothing tracks. You can choose the perfect soundtrack for your session, ensuring that your environment is as harmonious as your workflow.
+              </div>
+              <div className="about-paragraph">
+                <span className="about-list-bold">Progress Tracking</span>: Keep track of your study or work sessions effortlessly. Momo allows you to monitor your Pomodoro progress over time, helping you stay on top of your goals and celebrate your achievements.
+              </div>
+            </section>
+            }
 
             <div className="about-header">
               Why Momo?
@@ -49,7 +72,7 @@ const About = () => {
               Join us on this journey to a more peaceful and productive you. Welcome to Momo.
             </div>
 
-            <div className="h-[100px]">
+            <div className="h-[200px]">
 
             </div>
           </section>
