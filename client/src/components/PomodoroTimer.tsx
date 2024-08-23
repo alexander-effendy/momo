@@ -92,7 +92,7 @@ const PomodoroTimer = () => {
 
   return (
     <div 
-      className={`flex flex-col select-none ${mobile && 'mt-[-100px]'}`}
+      className={`flex flex-col select-none ${mobile && 'mt-[-50px]'}`}
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
     >
