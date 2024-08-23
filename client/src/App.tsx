@@ -7,8 +7,8 @@ import {KindeProvider} from "@kinde-oss/kinde-auth-react";
 const App = () => {
   return (
     <KindeProvider
-		  clientId="927a9fb661d741bb91268ea5df3d83ea"
-		  domain="https://momomo.kinde.com"
+		  clientId={import.meta.env.VITE_KINDE_CLIENT_ID}
+		  domain={import.meta.env.VITE_KINDE_DOMAIN}
       // redirectUri={import.meta.env.VITE_REDIRECT_URI}
       // logoutUri={import.meta.env.VITE_LOGOUT_URI}
 		  redirectUri="http://localhost:5173"
