@@ -1,8 +1,14 @@
 const { Pool } = require('pg');
+const dotenv = require('dotenv');
+
+
+dotenv.config();
 
 const pool = new Pool({
-  connectionString: 'postgres://postgres:ekkamaiONNUT11@momo-db.ch06yuy6m617.ap-southeast-2.rds.amazonaws.com:5432/momo-db'
+  connectionString: process.env.DATABASE_URL,
+  ssl: false,
 });
+
 
 pool.connect((err) => {
   if (err) {
