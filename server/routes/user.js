@@ -13,11 +13,8 @@ const pool = new Pool({
 
 const router = express.Router();
 
-router.post('/auth', verifyToken, async (req, res) =>  {
-  console.log(req);
-  const { id, email, given_name, family_name } = req.body;
-  console.log('woi');
-  console.log(id, email, given_name);
+router.post('/auth', async (req, res) =>  {
+  const { id, email, given_name } = req.body;
 
   try {
     // Check if user already exists
@@ -26,15 +23,15 @@ router.post('/auth', verifyToken, async (req, res) =>  {
     if (userResult.rows.length === 0) {
       // Insert new user if not exists
       await pool.query(
-        'INSERT INTO users (kinde_user_id, email, username, given_name, family_name) VALUES ($1, $2, $3, $4, $5)',
-        [id, email, email, given_name, family_name]
+        'INSERT INTO users (kinde_user_id, email, full_name) VALUES ($1, $2, $3)',
+        [id, email, given_name]
       );
       return res.json({ message: 'User registered and added to the database' });
     } else {
       return res.json({ message: 'User already exists in the database. No new user will be added.' });
     }
   } catch (err) {
-    alert('error inserting user into database');
+    // alert('error inserting user into database');
     console.error('Error inserting user into database:', err);
     return res.status(500).json({ error: 'Internal Server Error' });
   }

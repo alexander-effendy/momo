@@ -1,11 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
-const authRoutes = require('./routes/auth');
-const categoryRoutes = require('./routes/categories');
-const subcategoryRoutes = require('./routes/subcategories');
-const generalTaskRoutes = require('./routes/generalTasks');
-const taskRoutes = require('./routes/tasks');
+const userRoutes = require('./routes/user');
 
 dotenv.config();
 

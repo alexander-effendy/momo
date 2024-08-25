@@ -9,6 +9,8 @@ const verifyToken = async (req, res, next) => {
 
   try {
     const public_key = await getKey();
+    console.log(public_key);
+    console.log(token);
     const decoded = jwt.verify(token, public_key, {
       algorithms: ['RS256'],
     });
@@ -16,8 +18,8 @@ const verifyToken = async (req, res, next) => {
     console.log('user authorized');
     next();
   } catch (err) {
-    console.log('user unauthrized')
-    return res.status(401).json({ message: 'Unauthorized!' });
+    console.log('user unauthorized [getKey]')
+    return res.status(401).json({ message: 'Unauthorized!!' });
   }
 };
 
