@@ -154,7 +154,7 @@ const Home = () => {
             <DialogTrigger asChild>
               <Button className="pomodoro-icon select-none rounded-[10px] hover:bg-[#234121] hover:text-white">Progress</Button>
             </DialogTrigger>
-            <DialogContent className="grid place-items-center bg-green-200">
+            <DialogContent className="grid place-items-center">
               <DialogHeader>
                 <DialogTitle>Pomodoro Progress</DialogTitle>
                 <DialogDescription>
