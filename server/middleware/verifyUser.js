@@ -8,7 +8,7 @@ const verifyToken = async (req, res, next) => {
   }
 
   try {
-    const public_key = await getKey();
+    const public_key = await getwKey();
     console.log(public_key);
     console.log(token);
     const decoded = jwt.verify(token, public_key, {

@@ -31,7 +31,6 @@ app.get('/', (req, res) => {
   res.send('Hello, world! Your server is running.');
 });
 
-
 app.listen(3000, '0.0.0.0', () => {
   console.log('Server is running on port 3000!, listening from all IP addresses');
 });
