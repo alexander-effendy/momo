@@ -7,8 +7,7 @@ const jwt = require('jsonwebtoken');
 dotenv.config();
 
 const pool = new Pool({
-  // connectionString: process.env.DATABASE_URL,
-  connectionString: 'http://ec2-3-25-94-38.ap-southeast-2.compute.amazonaws.com:3000',
+  connectionString: process.env.DATABASE_URL,
   ssl: false,
 });
 

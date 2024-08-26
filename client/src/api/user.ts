@@ -3,7 +3,7 @@ import { useKindeAuth } from '@kinde-oss/kinde-auth-react';
 
 const api = axios.create({
   // baseURL: 'http://localhost:3000',
-  baseURL: process.env.VITE_API_BASE_URL,
+  baseURL: 'http://ec2-3-25-94-38.ap-southeast-2.compute.amazonaws.com:3000'
 })
 
 export const handleSignUp = async () => {
