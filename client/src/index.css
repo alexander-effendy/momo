@@ -175,6 +175,11 @@ body, html {
   scrollbar-width: none; /* Hide scrollbar in Firefox */
 }
 
+.hide-scroll {
+  overflow-y: scroll; /* Enable vertical scrolling */
+  scrollbar-width: none; /* Hide scrollbar in Firefox */
+}
+
 .your-scroll-container::-webkit-scrollbar {
   display: none; /* Hide scrollbar in Chrome, Safari, and Opera */
 }
