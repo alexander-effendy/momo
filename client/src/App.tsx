@@ -9,10 +9,10 @@ const App = () => {
     <KindeProvider
 		  clientId='927a9fb661d741bb91268ea5df3d83ea'
 		  domain='https://momomo.kinde.com'
-      redirectUri={import.meta.env.VITE_REDIRECT_URI}
-      logoutUri={import.meta.env.VITE_LOGOUT_URI}
-		  // redirectUri='http://localhost:5173'
-		  // logoutUri='http://localhost:5173'
+      // redirectUri={import.meta.env.VITE_REDIRECT_URI}
+      // logoutUri={import.meta.env.VITE_LOGOUT_URI}
+		  redirectUri='http://localhost:5173'
+		  logoutUri='http://localhost:5173'
 	  >
       <BrowserRouter>
         <Pages />

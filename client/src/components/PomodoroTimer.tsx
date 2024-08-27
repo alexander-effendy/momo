@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 // import AlienIcon from '@/assets/AlienIcon';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import bell from '@/assets/songs/bell.mp3';
+import alarm from '@/assets/songs/alarm.mp3';
 
 const PomodoroTimer = () => {
 
@@ -11,13 +12,14 @@ const PomodoroTimer = () => {
   const desktop = useMediaQuery('(min-width:1023px)');
 
   // usestates
-  const [minutes, setMinutes] = useState<number>(25);
-  const [seconds, setSeconds] = useState<number>(0);
+  const [minutes, setMinutes] = useState<number>(0);
+  const [seconds, setSeconds] = useState<number>(7);
   const [isActive, setIsActive] = useState<boolean>(false);
   const [isHover, setIsHover] = useState<boolean>(false);
   const [isPause, setIsPause] = useState<boolean>(false);
 
   const bellRef = useRef<HTMLAudioElement | null>(null);
+  const alarmRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     let interval: NodeJS.Timeout | undefined;
@@ -27,7 +29,13 @@ const PomodoroTimer = () => {
         if (seconds === 0) {
           if (minutes === 0) {
             // deactivate stopwatch
+            // deactivate alarm
+            if (alarmRef.current) {
+              alarmRef.current.pause();
+              alarmRef.current.currentTime = 0;
+            }
             setIsActive(false);
+            setMinutes(25);
             clearInterval(interval as NodeJS.Timeout);
           } else {
             // if minutes not 0 yet, decrease minute
@@ -42,6 +50,11 @@ const PomodoroTimer = () => {
         if ((minutes === 5 && seconds === 1) || (minutes === 1 && seconds === 1)) {
           if (bellRef.current) bellRef.current.play();
         }
+        // rings alarm for the entire 10 seconds and less duration
+        if (minutes === 0 && seconds === 6) {
+          if (alarmRef.current) alarmRef.current.play();
+        }
+        
       }, 1000)
     } else if (!isActive && (minutes !== 0 || seconds !== 0)) {
       clearInterval(interval as NodeJS.Timeout);
@@ -108,7 +121,7 @@ const PomodoroTimer = () => {
             cy={cy}
           />
           <circle
-            className="text-white"
+            className={`${(minutes === 0 && seconds < 6) ? 'text-orange-400' : 'text-white'}`}
             strokeWidth="4.5"
             strokeLinecap="round"
             stroke="currentColor"
@@ -130,7 +143,7 @@ const PomodoroTimer = () => {
             textAnchor="middle"
             dy="0.3em"
             className="text-white text-[60px] lg:text-[80px]"
-            fill="white"
+            fill={`${(minutes === 0 && seconds < 6) ? 'orange' : 'white'}`}
           >
             {timeParser(minutes)} : {timeParser(seconds)}
           </text>
@@ -143,6 +156,7 @@ const PomodoroTimer = () => {
       </div>
 
       <audio ref={bellRef} src={bell} />
+      <audio ref={alarmRef} src={alarm} />
     </div>
     
   )

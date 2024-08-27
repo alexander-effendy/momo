@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useLayoutEffect } from 'react';
 // import ReactPlayer from 'react-player';
 import dragon from '@/assets/songs/coc-dragon-palace.mp3'
 
@@ -19,22 +19,6 @@ import {
 } from "@/components/ui/sheet";
 
 import { Button } from '@/components/ui/button';
-
-// import {useKindeAuth} from "@kinde-oss/kinde-auth-react";
-
-// const api = axios.create({
-//   // baseURL: 'http://localhost:3000',
-//   baseURL: 'https://ec2-3-25-94-38.ap-southeast-2.compute.amazonaws.com:3000',
-// });
-
-// import {
-//   Dialog,
-//   DialogContent,
-//   DialogDescription,
-//   DialogHeader,
-//   DialogTitle,
-//   DialogTrigger,
-// } from "@/components/ui/dialog"
 
 import {
   Drawer,
@@ -61,7 +45,7 @@ import Umbrella from '@/assets/walpaper/Umbrella.png';
 import PomodoroTimer from '@/components/PomodoroTimer';
 import { useNavigate } from 'react-router-dom';
 
-const imageClassName="border-[1px] border-white hover:cursor-pointer opacity-50 hover:opacity-100 transition-opacity duration-700";
+const imageClassName="border-[1px] border-white hover:cursor-pointer filter opacity-70 hover:opacity-100 transition-duration duration-700";
 
 const images = [
   { src: ghibliForest, alt: 'ghibliForest' },
@@ -78,15 +62,33 @@ const Home = () => {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [currentWalpaper, setCurrentWalpaper] = useState<string>(ghibliForest);
-  const [isSettingOpen, SetIsSettingOpen] = useState<boolean>(false);
+  const [isSettingOpen, setIsSettingOpen] = useState<boolean>(false);
+
+  const scrollImageRef = useRef<HTMLDivElement>(null);
+
+  const handleImageClick = (src: string) => {
+    const scrollPosition = scrollImageRef.current?.scrollTop || 0;
+    setCurrentWalpaper(src);
+
+    // Restore scroll position after state update
+    setTimeout(() => {
+      if (scrollImageRef.current) {
+        scrollImageRef.current.scrollTop = scrollPosition;
+      }
+    }, 0);
+  }
+
+  const dialogRef = useRef<HTMLDivElement>(null);
 
   const SettingDialog = () => {
     return(
-      <div className="bg-background w-[300px] grid place-items-center" style={{ height: 'calc(100vh - 100px)' }} >
-        <section className={`flex flex-col gap-[10px] w-full h-full overflow-y-auto hide-scroll ${!isSettingOpen && 'pointer-events-none'}`}>
+      <div className="z-[100] bg-background w-[300px] grid place-items-center" style={{ height: 'calc(100vh - 100px)' }} ref={dialogRef}>
+        <section 
+          ref={scrollImageRef}
+          className={`flex flex-col gap-[10px] w-full h-full overflow-y-auto hide-scroll ${!isSettingOpen && 'pointer-events-none'}`}>
           {images.map((image, index) => (
             <div key={index} className={imageClassName}>
-              <img onClick={() => setCurrentWalpaper(image.src)} src={image.src} alt={image.alt} className="w-full h-auto" />
+              <img onClick={() => handleImageClick(image.src)} src={image.src} alt={image.alt} className="w-full h-auto" />
               <div className="bg-black hover:opacity-0"></div>
             </div>
           ))}
@@ -95,37 +97,6 @@ const Home = () => {
       </div>
     )
   }
-
-  // const { login, register, logout, isAuthenticated, user, getToken } = useKindeAuth();
-
-  // helpers
-  // const handleSignUp = async (getToken: any, user:any) => {
-  //   const userInfo = {
-  //     id: user.id,
-  //     email: user.email,
-  //     given_name: user.given_name,
-  //     family_name: user.family_name
-  //   };
-  //   try {
-  //     const token = await getToken();
-  //     await api.post('/api/auth', userInfo, {
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     });
-  //     // console.log('User authenticated and will be inserted into database if new. Otherwise no.', response.data);
-  //   } catch (error) {
-  //     console.error('Error during signing up:', error);
-  //   }
-  // }
-
-  // const handleRegister = async () => {
-  //   register();
-  //   if (user) await handleSignUp(getToken, user);
-  // }
-
-  // const handleLogin = () => login();
-  // const handleLogout = () => logout();
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -140,11 +111,18 @@ const Home = () => {
       } else {
         audioRef.current.pause();
       }
-    }
+    };
+    const scrollPosition = scrollImageRef.current?.scrollTop || 0;
+    setTimeout(() => {
+      if (scrollImageRef.current) {
+        scrollImageRef.current.scrollTop = scrollPosition;
+      }
+    }, 0);
   }
 
   const handleSettingToggle = () => {
-    SetIsSettingOpen((isSettingOpen) => !isSettingOpen);
+    
+    setIsSettingOpen((isSettingOpen) => !isSettingOpen);
     console.log(isSettingOpen);
   }
 
@@ -152,7 +130,7 @@ const Home = () => {
   //   window.open('https://alexandereffendy.com', '_blank');
   // };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 0);
@@ -160,7 +138,6 @@ const Home = () => {
   }, []);
 
   const LoadingPage = () => {
-    // const { isAuthenticated, user } = useKindeAuth();
     return (
       <div className={`${isLoading ? '' : 'hidden'} z-[100] h-screen w-screen grid place-items-center bg-[#061b21] text-2xl font-bold select-none`}>
         <section className="flex flex-col bg-yellow-200s">
@@ -173,15 +150,6 @@ const Home = () => {
     )
   }
 
-  // useEffect(() => {
-  //   const registerAndSignUp = async () => {
-  //     if (isAuthenticated && user && getToken) {
-  //       await handleSignUp(getToken, user);
-  //     }
-  //   };
-  //   registerAndSignUp();
-  // }, [isAuthenticated, user, getToken]);
-
   return (
     <div className="bg-[#061b21]">
       <LoadingPage />
@@ -193,35 +161,10 @@ const Home = () => {
       >
       
         <div className={`${isLoading ? 'opacity-0' : 'opacity-100'} transition-opacity duration ease-in-out`}>
-          {/* <Dialog>
-            <DialogTrigger asChild>
-              <Button className="pomodoro-icon select-none rounded-[10px] hover:bg-[#234121] hover:text-white">Settings</Button>
-            </DialogTrigger>
-            <DialogContent className="grid place-items-center">
-              <DialogHeader>
-                <DialogTitle>Pomodoro Progress</DialogTitle>
-                <DialogDescription>
-                  {(isAuthenticated && user) ?
-                    <>
-                      Track your progress!
-                    </> :
-                    <>
-                      <div className="mb-[20px]">To track your pomodoro progress, you need to create an account.</div>
-                      <section className="flex justify-end gap-[10px]">
-                        <Button className="select-none bg-green-700 text-white rounded-[10px] hover:bg-white hover:border-[1px] border-black hover:text-black dialog-button" onClick={() => handleRegister()}>Register</Button>
-                        <Button className="select-none bg-blue-700 text-white rounded-[10px] hover:bg-white hover:border-[1px] border-black hover:text-black dialog-button" onClick={() => handleLogin()}>Log In</Button>
-                      </section>
-                    </>
-                  }
-                </DialogDescription>
-              </DialogHeader>
-            </DialogContent>
-          </Dialog> */}
           <Button onClick={() => handleSettingToggle()} className="pomodoro-icon select-none rounded-[10px] hover:bg-[#234121] hover:text-white">{isSettingOpen ? 'close' : 'Settings'}</Button>
           {isSettingOpen &&
             <div className="absolute top-[80px] left-[20px]">
               <SettingDialog />
-              s
             </div>
           }
       
@@ -247,9 +190,6 @@ const Home = () => {
                   </Button>
                   <Button className="hover:underline">Songs</Button>
                 </section>
-                {/* <Button className="hover:underline" onClick={() => handleButtonClick()}>alexandereffendy.com</Button> */}
-                {/* <span>Hi {user?.given_name} hi {user?.email}</span> */}
-                {/* <Button onClick={() => handleLogout()}>log out</Button> */}
               </section>
             
               {/* songs */}
@@ -259,7 +199,7 @@ const Home = () => {
           <audio ref={audioRef} src={dragon} preload="auto" loop={true}/>
           <Drawer>
             <DrawerTrigger>
-              <SongIcon />
+              <div onClick={() => setIsSettingOpen(false)}><SongIcon /></div>
             </DrawerTrigger>
             <DrawerContent className="grid place-items-center">
             <div className="z-[20] fixed bottom-5 right-5 hover:cursor-pointer">
