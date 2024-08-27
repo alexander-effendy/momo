@@ -41,6 +41,7 @@ import ghibliPlane from '@/assets/walpaper/ghibliPlane.jpg';
 
 import totoro from '@/assets/walpaper/totoro.webp';
 import Umbrella from '@/assets/walpaper/Umbrella.png';
+import Anime from '@/assets/walpaper/Anime.jpg';
 
 import PomodoroTimer from '@/components/PomodoroTimer';
 import { useNavigate } from 'react-router-dom';
@@ -56,6 +57,7 @@ const images = [
   { src: ghibliPlane, alt: 'ghibliPlane' },
   { src: totoro, alt: 'ghibliPlane' },
   { src: Umbrella, alt: 'ghibliPlane' },
+  { src: Anime, alt: 'ghibliPlane' },
 ];
 
 const Home = () => {

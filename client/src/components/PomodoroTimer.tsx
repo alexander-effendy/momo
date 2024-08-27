@@ -12,8 +12,8 @@ const PomodoroTimer = () => {
   const desktop = useMediaQuery('(min-width:1023px)');
 
   // usestates
-  const [minutes, setMinutes] = useState<number>(0);
-  const [seconds, setSeconds] = useState<number>(7);
+  const [minutes, setMinutes] = useState<number>(25);
+  const [seconds, setSeconds] = useState<number>(0);
   const [isActive, setIsActive] = useState<boolean>(false);
   const [isHover, setIsHover] = useState<boolean>(false);
   const [isPause, setIsPause] = useState<boolean>(false);
