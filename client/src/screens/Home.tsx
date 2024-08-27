@@ -1,14 +1,14 @@
 import { useState, useRef, useLayoutEffect } from 'react';
 // import ReactPlayer from 'react-player';
 import dragon from '@/assets/songs/coc-dragon-palace.mp3'
-
+// import $ from 'jquery';
+// import 'jquery.ripples';
 import Lottie from 'lottie-react';
 import leaf from '@/assets/svg/leaf.json';
 // import axios from 'axios';
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
 // import auth functions
-
 import {
   Sheet,
   SheetTitle,
@@ -71,6 +71,7 @@ const Home = () => {
   const handleImageClick = (src: string) => {
     const scrollPosition = scrollImageRef.current?.scrollTop || 0;
     setCurrentWalpaper(src);
+    console.log(currentWalpaper);
 
     // Restore scroll position after state update
     setTimeout(() => {
@@ -152,11 +153,26 @@ const Home = () => {
     )
   }
 
+  // useEffect(() => {
+  //   // Destroy the existing ripple effect
+  //   $('#ripple-bg').ripples('destroy');
+
+  //   // Reinitialize the ripple effect
+  //   $('#ripple-bg').ripples({
+  //     resolution: 512,
+  //     dropRadius: 10,
+  //     perturbance: 0.0075, // Adjust to your liking
+  //     interactive: true,
+  //   });
+
+  // }, [currentWalpaper]);
+
   return (
     <div className="bg-[#061b21]">
       <LoadingPage />
-      <div 
-        className={`${isLoading ? 'opacity-0 bg-[#061b21]' : 'opacity-100'} transition-opacity duration ease-in-out full-height w-screen h-screen bg-cover bg-center bg-no-repeat grid place-items-center overflow-y-hidden`}
+      <div
+        id="ripple-bg"
+        className={`${isLoading ? 'opacity-0 bg-[#061b21]' : 'opacity-95'} transition-opacity duration full-height w-screen h-screen bg-cover bg-center bg-no-repeat grid place-items-center overflow-y-hidden`}
         style={{ 
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url(${currentWalpaper})`,        
         }}

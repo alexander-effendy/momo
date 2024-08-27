@@ -30,7 +30,10 @@
   "include": [
     "src",
     "src/**/*",
+    "src/*.js",
     "src/assets/**/*.json",
-    "src/assets/svg/*.json",
-  ]
+    "src/assets/svg/*.json", "jquery.ripples.js", "jquery.ripples.js",
+    "src/**/*.d.ts"
+  ],
+  "exclude": ["node_modules"]
 }

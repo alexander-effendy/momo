@@ -5,12 +5,32 @@
     <link rel="icon" type="image/svg+xml" href="./src/assets/BlueForest.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
     <title>Momo</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="jquery.ripples.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        try {
+          $('#ripple-bg').ripples({
+            resolution: 512,
+            dropRadius: 10,
+            perturbance: 0.0075, // 0.0025,
+            interactive: true,
+          });
+          console.log("Ripple effect initialized successfully.");
+        } catch (e) {
+          console.error("Error initializing ripple effect:", e);
+        }
+      });
+    </script>
+
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"></div>    
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

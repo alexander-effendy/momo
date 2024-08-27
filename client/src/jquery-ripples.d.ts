@@ -1,5 +1,3 @@
-/// <reference types="vite/client" />
-
 import * as JQuery from 'jquery';
 
 declare module 'jquery' {
