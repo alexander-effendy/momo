@@ -170,14 +170,13 @@ const Home = () => {
   return (
     <div className="bg-[#061b21]">
       <LoadingPage />
-      <div
-        id="ripple-bg"
+      <div id="ripple-bg"
         className={`${isLoading ? 'opacity-0 bg-[#061b21]' : 'opacity-95'} transition-opacity duration full-height w-screen h-screen bg-cover bg-center bg-no-repeat grid place-items-center overflow-y-hidden`}
         style={{ 
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url(${currentWalpaper})`,        
         }}
       >
-      
+        <div  className="absolute w-screen full-height h-screen bg-background"></div>
         <div className={`${isLoading ? 'opacity-0' : 'opacity-100'} transition-opacity duration ease-in-out`}>
           <Button onClick={() => handleSettingToggle()} className="pomodoro-icon select-none rounded-[10px] hover:bg-[#234121] hover:text-white">{isSettingOpen ? 'close' : 'Settings'}</Button>
           {isSettingOpen &&

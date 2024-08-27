@@ -13,7 +13,7 @@ const App = () => {
       // logoutUri={import.meta.env.VITE_LOGOUT_URI}
 		  redirectUri='http://localhost:5173'
 		  logoutUri='http://localhost:5173'
-	  >
+	  > 
       <BrowserRouter>
         <Pages />
       </BrowserRouter>
