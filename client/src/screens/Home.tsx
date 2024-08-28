@@ -41,7 +41,7 @@ import Anime from '@/assets/walpaper/Anime.jpg';
 import PomodoroTimer from '@/components/PomodoroTimer';
 import { useNavigate } from 'react-router-dom';
 
-const imageClassName="border-[1px] border-white hover:cursor-pointer filter opacity-70 hover:opacity-100 transition-duration duration-700";
+const imageClassName="border-[1px] border-white hover:cursor-pointer filter grayscale hover:grayscale-0 transition-duration duration-500";
 
 const images = [
   { src: ghibliForest, alt: 'ghibliForest' },
@@ -92,8 +92,7 @@ const Home = () => {
           className={`z-[100] flex flex-col gap-[10px] w-full h-full overflow-y-auto hide-scroll ${!isSettingOpen && 'pointer-events-none'}`}>
           {images.map((image, index) => (
             <div key={index} className={imageClassName}>
-              <img  onClick={() => handleImageClick(image.src)} src={image.src} alt={image.alt} className="w-full h-auto" />
-              <div className="bg-black hover:opacity-0"></div>
+              <img onClick={() => handleImageClick(image.src)} src={image.src} alt={image.alt} className="w-full h-auto" />
             </div>
           ))}
         </section>

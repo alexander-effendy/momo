@@ -33,7 +33,7 @@
     "src/*.js",
     "src/assets/**/*.json",
     "src/assets/svg/*.json", 
-    "jquery.ripples.js",
+    "public/jquery.ripples.js",
     "src/**/*.d.ts"
   ],
   "exclude": ["node_modules"]
