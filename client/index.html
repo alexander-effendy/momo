@@ -18,10 +18,22 @@
           $('#ripple-bg').ripples({
             resolution: 512,
             dropRadius: 25,
-            perturbance: 0.005, // 0.0025,
+            perturbance: 0.005,
             interactive: true,
           });
+    
           console.log("Ripple effect initialized successfully.");
+    
+          // touch support
+          $('#ripple-bg').on('touchstart', function(e) {
+            // Extract the touch point
+            const touch = e.originalEvent.touches[0];
+            const x = touch.pageX;
+            const y = touch.pageY;
+    
+            $(this).ripples('drop', x, y, 20, 0.04);
+          });
+    
         } catch (e) {
           console.error("Error initializing ripple effect:", e);
         }
