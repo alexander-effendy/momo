@@ -61,7 +61,6 @@ const Home = () => {
   const [isSettingOpen, setIsSettingOpen] = useState<boolean>(false);
   
   const [currentWalpaper, setCurrentWalpaper] = useState<string>(ghibliForest);
-
   const scrollImageRef = useRef<HTMLDivElement>(null);
 
   const handleImageClick = (src: string) => {
@@ -75,7 +74,7 @@ const Home = () => {
       if (scrollImageRef.current) {
         scrollImageRef.current.scrollTop = scrollPosition;
       }
-    }, 2000);
+    }, 0);
   };
 
   const dialogRef = useRef<HTMLDivElement>(null);
