@@ -75,7 +75,7 @@ const Home = () => {
       if (scrollImageRef.current) {
         scrollImageRef.current.scrollTop = scrollPosition;
       }
-    }, 0);
+    }, 2000);
   };
 
   const dialogRef = useRef<HTMLDivElement>(null);
