@@ -1,5 +1,7 @@
 import { BrowserRouter } from 'react-router-dom';
 import './index.css';
+import './effects.css';
+
 import Pages from './Pages';
 
 import { KindeProvider } from "@kinde-oss/kinde-auth-react";

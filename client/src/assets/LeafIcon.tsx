@@ -10,7 +10,7 @@ const LeafIcon = () => {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="leaf-icon icon icon-tabler icons-tabler-outline icon-tabler-leaf"
+      className="leaf-icon icon icon-tabler icons-tabler-outline icon-tabler-leaf z-[71]"
     >
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
       <path d="M5 21c.5 -4.5 2.5 -8 7 -10" />

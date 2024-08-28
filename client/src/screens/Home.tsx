@@ -1,14 +1,10 @@
 import { useState, useRef, useLayoutEffect } from 'react';
-// import ReactPlayer from 'react-player';
 import dragon from '@/assets/songs/coc-dragon-palace.mp3'
-// import $ from 'jquery';
-// import 'jquery.ripples';
+
 import Lottie from 'lottie-react';
 import leaf from '@/assets/svg/leaf.json';
-// import axios from 'axios';
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
-// import auth functions
 import {
   Sheet,
   SheetTitle,
@@ -31,7 +27,6 @@ import {
 import LeafIcon from '@/assets/LeafIcon';
 import SongIcon from '@/assets/SongIcon';
 
-// walpaper
 import ghibliForest from '@/assets/walpaper/ghibliForest.jpg';
 import BridgeWater from '@/assets/walpaper/BridgeWater.jpg';
 import DeerWater from '@/assets/walpaper/DeerWater.jpg';
@@ -63,40 +58,45 @@ const images = [
 const Home = () => {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [currentWalpaper, setCurrentWalpaper] = useState<string>(ghibliForest);
   const [isSettingOpen, setIsSettingOpen] = useState<boolean>(false);
+  
+  const [currentWalpaper, setCurrentWalpaper] = useState<string>(ghibliForest);
 
   const scrollImageRef = useRef<HTMLDivElement>(null);
 
   const handleImageClick = (src: string) => {
+    if (src === currentWalpaper) return;
     const scrollPosition = scrollImageRef.current?.scrollTop || 0;
     setCurrentWalpaper(src);
+    
     console.log(currentWalpaper);
 
-    // Restore scroll position after state update
     setTimeout(() => {
       if (scrollImageRef.current) {
         scrollImageRef.current.scrollTop = scrollPosition;
       }
     }, 0);
-  }
+  };
 
   const dialogRef = useRef<HTMLDivElement>(null);
 
   const SettingDialog = () => {
     return(
-      <div className="z-[100] bg-background w-[300px] grid place-items-center" style={{ height: 'calc(100vh - 100px)' }} ref={dialogRef}>
+      <div 
+        className="z-[100] bg-background w-[300px] grid place-items-center" 
+        style={{ height: 'calc(100vh - 100px)' }} 
+        ref={dialogRef}
+      >
         <section 
           ref={scrollImageRef}
-          className={`flex flex-col gap-[10px] w-full h-full overflow-y-auto hide-scroll ${!isSettingOpen && 'pointer-events-none'}`}>
+          className={`z-[100] flex flex-col gap-[10px] w-full h-full overflow-y-auto hide-scroll ${!isSettingOpen && 'pointer-events-none'}`}>
           {images.map((image, index) => (
             <div key={index} className={imageClassName}>
-              <img onClick={() => handleImageClick(image.src)} src={image.src} alt={image.alt} className="w-full h-auto" />
+              <img  onClick={() => handleImageClick(image.src)} src={image.src} alt={image.alt} className="w-full h-auto" />
               <div className="bg-black hover:opacity-0"></div>
             </div>
           ))}
         </section>
-       
       </div>
     )
   }
@@ -129,9 +129,9 @@ const Home = () => {
     console.log(isSettingOpen);
   }
 
-  // const handleButtonClick = () => {
-  //   window.open('https://alexandereffendy.com', '_blank');
-  // };
+  const handleButtonClick = () => {
+    window.open('https://alexandereffendy.com', '_blank');
+  };
 
   useLayoutEffect(() => {
     const timer = setTimeout(() => {
@@ -142,7 +142,8 @@ const Home = () => {
 
   const LoadingPage = () => {
     return (
-      <div className={`${isLoading ? '' : 'hidden'} z-[100] h-screen w-screen grid place-items-center bg-[#061b21] text-2xl font-bold select-none`}>
+      <div 
+        className={`${isLoading ? '' : 'hidden'} z-[100] h-screen w-screen grid place-items-center bg-[#061b21] text-2xl font-bold select-none`}>
         <section className="flex flex-col bg-yellow-200s">
           <div className="flex gap-[10px] items-center">
             <Lottie className="my-auto size-[70px]" animationData={leaf} loop={true} />
@@ -153,32 +154,28 @@ const Home = () => {
     )
   }
 
-  // useEffect(() => {
-  //   // Destroy the existing ripple effect
-  //   $('#ripple-bg').ripples('destroy');
-
-  //   // Reinitialize the ripple effect
-  //   $('#ripple-bg').ripples({
-  //     resolution: 512,
-  //     dropRadius: 10,
-  //     perturbance: 0.0075, // Adjust to your liking
-  //     interactive: true,
-  //   });
-
-  // }, [currentWalpaper]);
-
   return (
     <div className="bg-[#061b21]">
       <LoadingPage />
-      <div id="ripple-bg"
-        className={`${isLoading ? 'opacity-0 bg-[#061b21]' : 'opacity-95'} transition-opacity duration full-height w-screen h-screen bg-cover bg-center bg-no-repeat grid place-items-center overflow-y-hidden`}
+      {/* Background with ripple effect */}
+
+
+      {/* Transparent overlay to allow clicks to pass through */}
+      <div
+        className={`${isLoading ? 'opacity-0 bg-[#061b21]' : 'opacity-95'} first-line:transition-opacity duration full-height w-screen h-screen bg-cover bg-center bg-no-repeat grid place-items-center overflow-y-hidden`}
         style={{ 
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url(${currentWalpaper})`,        
         }}
       >
-        <div  className="absolute w-screen full-height h-screen bg-background"></div>
+        <div
+          id="ripple-bg"
+          className="absolute w-full h-full"
+          style={{ zIndex: 60 }}
+        />
         <div className={`${isLoading ? 'opacity-0' : 'opacity-100'} transition-opacity duration ease-in-out`}>
-          <Button onClick={() => handleSettingToggle()} className="pomodoro-icon select-none rounded-[10px] hover:bg-[#234121] hover:text-white">{isSettingOpen ? 'close' : 'Settings'}</Button>
+          <Button onClick={() => handleSettingToggle()} className="pomodoro-icon select-none rounded-[10px] hover:bg-[#234121] hover:text-white"
+            style={{ zIndex: 71 }}
+          >{isSettingOpen ? 'close' : 'Settings'}</Button>
           {isSettingOpen &&
             <div className="absolute top-[80px] left-[20px]">
               <SettingDialog />
@@ -199,14 +196,17 @@ const Home = () => {
               {/* account */}
               <section className="flex flex-col justify-between p-[30px] h-full text-white select-none">
                 <section className="grid place-items-center">
-                  <Button className="hover:underline">Profile</Button>
-                  <Button>
-                    <span className="hover:underline" onClick={() => navigate('./about')}>
-                      About <span className="jersey-10-regular text-[20px]">MOMO</span>
-                    </span>
-                  </Button>
-                  <Button className="hover:underline">Songs</Button>
+                  <section className="flex flex-col justify-between h-full">
+                    <Button className="hover:underline">Profile</Button>
+                    <Button>
+                      <span className="hover:underline" onClick={() => navigate('./about')}>
+                        About <span className="jersey-10-regular text-[20px]">MOMO</span>
+                      </span>
+                    </Button>
+                    <Button className="hover:underline">Songs</Button>
+                  </section>
                 </section>
+                <Button onClick={() => handleButtonClick()}>alexandereffendy.com</Button>
               </section>
             
               {/* songs */}
