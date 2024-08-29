@@ -30,8 +30,6 @@ import {
 import {
   Drawer,
   DrawerContent,
-  DrawerFooter,
-  DrawerHeader,
   DrawerTrigger,
 } from "@/components/ui/drawer"
 
@@ -165,7 +163,7 @@ const Home = () => {
           className="absolute w-full h-full"
           style={{ zIndex: 60 }}
         />
-        
+
         <div className={`${isLoading ? 'opacity-0' : 'opacity-100'} transition-opacity duration ease-in-out`}>
           <Button onClick={() => handleSettingToggle()} className="pomodoro-icon select-none rounded-[10px] hover:bg-[#234121] hover:text-white"
             style={{ zIndex: 71 }}
