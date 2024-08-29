@@ -1,10 +1,23 @@
 import { useState, useRef, useLayoutEffect } from 'react';
-import dragon from '@/assets/songs/coc-dragon-palace.mp3'
+import { useNavigate } from 'react-router-dom';
 
+// =================================== asset imports =================================== //
+import dragon from '@/assets/songs/coc-dragon-palace.mp3'
+import ghibliForest from '@/assets/walpaper/ghibliForest.jpg';
+import BridgeWater from '@/assets/walpaper/BridgeWater.jpg';
+import DeerWater from '@/assets/walpaper/DeerWater.jpg';
+import HouseForest from '@/assets/walpaper/HouseForest.jpg';
+import Pagoda from '@/assets/walpaper/Pagoda.jpg';
+import ghibliPlane from '@/assets/walpaper/ghibliPlane.jpg';
+import totoro from '@/assets/walpaper/totoro.webp';
+import Umbrella from '@/assets/walpaper/Umbrella.png';
+import Anime from '@/assets/walpaper/Anime.jpg';
 import Lottie from 'lottie-react';
 import leaf from '@/assets/svg/leaf.json';
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
+import { Button } from '@/components/ui/button';
 
+// =================================== ui imports =================================== //
 import {
   Sheet,
   SheetTitle,
@@ -14,8 +27,6 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
-import { Button } from '@/components/ui/button';
-
 import {
   Drawer,
   DrawerContent,
@@ -24,60 +35,66 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer"
 
+// =================================== components imports =================================== //
 import LeafIcon from '@/assets/LeafIcon';
 import SongIcon from '@/assets/SongIcon';
-
-import ghibliForest from '@/assets/walpaper/ghibliForest.jpg';
-import BridgeWater from '@/assets/walpaper/BridgeWater.jpg';
-import DeerWater from '@/assets/walpaper/DeerWater.jpg';
-import HouseForest from '@/assets/walpaper/HouseForest.jpg';
-import Pagoda from '@/assets/walpaper/Pagoda.jpg';
-import ghibliPlane from '@/assets/walpaper/ghibliPlane.jpg';
-
-import totoro from '@/assets/walpaper/totoro.webp';
-import Umbrella from '@/assets/walpaper/Umbrella.png';
-import Anime from '@/assets/walpaper/Anime.jpg';
-
 import PomodoroTimer from '@/components/PomodoroTimer';
-import { useNavigate } from 'react-router-dom';
-
-const imageClassName="border-[1px] border-white hover:cursor-pointer filter grayscale hover:grayscale-0 transition-duration duration-500";
-
-const images = [
-  { src: ghibliForest, alt: 'ghibliForest' },
-  { src: BridgeWater, alt: 'BridgeWater' },
-  { src: DeerWater, alt: 'DeerWater' },
-  { src: HouseForest, alt: 'HouseForest' },
-  { src: Pagoda, alt: 'Pagoda' },
-  { src: ghibliPlane, alt: 'ghibliPlane' },
-  { src: totoro, alt: 'ghibliPlane' },
-  { src: Umbrella, alt: 'ghibliPlane' },
-  { src: Anime, alt: 'ghibliPlane' },
-];
 
 const Home = () => {
+
+  const navigate = useNavigate();
+
+  const imageClassName="border-[1px] border-white hover:cursor-pointer filter grayscale hover:grayscale-0 transition-duration duration-500";
+  
+  const images = [
+    { src: ghibliForest, alt: 'ghibliForest' },
+    { src: BridgeWater, alt: 'BridgeWater' },
+    { src: DeerWater, alt: 'DeerWater' },
+    { src: HouseForest, alt: 'HouseForest' },
+    { src: Pagoda, alt: 'Pagoda' },
+    { src: ghibliPlane, alt: 'ghibliPlane' },
+    { src: totoro, alt: 'ghibliPlane' },
+    { src: Umbrella, alt: 'ghibliPlane' },
+    { src: Anime, alt: 'ghibliPlane' },
+  ];
+
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isSettingOpen, setIsSettingOpen] = useState<boolean>(false);
   
   const [currentWalpaper, setCurrentWalpaper] = useState<string>(ghibliForest);
+
   const scrollImageRef = useRef<HTMLDivElement>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
 
   const handleImageClick = (src: string) => {
+    // if same, do nothing
     if (src === currentWalpaper) return;
-    const scrollPosition = scrollImageRef.current?.scrollTop || 0;
+    // otherwise if different, then change image, maintain scrollPosition
     setCurrentWalpaper(src);
-    
-    console.log(currentWalpaper);
-
+    const scrollPosition = scrollImageRef.current?.scrollTop || 0;
+    if (scrollImageRef.current) {
+      scrollImageRef.current.scrollTop = scrollPosition;
+    }
     setTimeout(() => {
-      if (scrollImageRef.current) {
-        scrollImageRef.current.scrollTop = scrollPosition;
-      }
+      
     }, 0);
   };
 
-  const dialogRef = useRef<HTMLDivElement>(null);
+  const LoadingPage = () => {
+    return (
+      <div 
+        className={`${isLoading ? '' : 'hidden'} z-[100] h-screen w-screen grid place-items-center bg-[#061b21] text-2xl font-bold select-none`}>
+        <section className="flex flex-col bg-yellow-200s">
+          <div className="flex gap-[10px] items-center">
+            <Lottie className="my-auto size-[70px]" animationData={leaf} loop={true} />
+            <div className="text-white text-[50px] animate-colorFade jersey-10-regular">momo</div>
+          </div>
+        </section>     
+      </div>
+    )
+  };
 
   const SettingDialog = () => {
     return(
@@ -97,12 +114,8 @@ const Home = () => {
         </section>
       </div>
     )
-  }
-
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-
-  const navigate = useNavigate();
-
+  };
+  
   const tooglePlayPause = () => {
     const prevValue = isPlaying;
     setIsPlaying(!prevValue);
@@ -119,13 +132,11 @@ const Home = () => {
         scrollImageRef.current.scrollTop = scrollPosition;
       }
     }, 0);
-  }
+  };
 
-  const handleSettingToggle = () => {
-    
+  const handleSettingToggle = () => {    
     setIsSettingOpen((isSettingOpen) => !isSettingOpen);
-    console.log(isSettingOpen);
-  }
+  };
 
   const handleButtonClick = () => {
     window.open('https://alexandereffendy.com', '_blank');
@@ -138,25 +149,9 @@ const Home = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const LoadingPage = () => {
-    return (
-      <div 
-        className={`${isLoading ? '' : 'hidden'} z-[100] h-screen w-screen grid place-items-center bg-[#061b21] text-2xl font-bold select-none`}>
-        <section className="flex flex-col bg-yellow-200s">
-          <div className="flex gap-[10px] items-center">
-            <Lottie className="my-auto size-[70px]" animationData={leaf} loop={true} />
-            <div className="text-white text-[50px] animate-colorFade jersey-10-regular">momo</div>
-          </div>
-        </section>     
-      </div>
-    )
-  }
-
   return (
     <div className="bg-[#061b21]">
       <LoadingPage />
-      {/* Background with ripple effect */}
-
 
       {/* Transparent overlay to allow clicks to pass through */}
       <div
@@ -170,6 +165,7 @@ const Home = () => {
           className="absolute w-full h-full"
           style={{ zIndex: 60 }}
         />
+        
         <div className={`${isLoading ? 'opacity-0' : 'opacity-100'} transition-opacity duration ease-in-out`}>
           <Button onClick={() => handleSettingToggle()} className="pomodoro-icon select-none rounded-[10px] hover:bg-[#234121] hover:text-white"
             style={{ zIndex: 71 }}
@@ -185,13 +181,13 @@ const Home = () => {
               <LeafIcon />
             </SheetTrigger>
             <SheetContent>
+
               <SheetHeader>
                 <VisuallyHidden><SheetTitle className="jersey-10-regular">Momo</SheetTitle></VisuallyHidden>
                 <SheetDescription>
-                  {/* This web app is designed to help relax and focus. */}
                 </SheetDescription>
               </SheetHeader>
-              {/* account */}
+
               <section className="flex flex-col justify-between p-[30px] h-full text-white select-none">
                 <section className="grid place-items-center">
                   <section className="flex flex-col justify-between h-full">
@@ -207,8 +203,6 @@ const Home = () => {
                 <Button onClick={() => handleButtonClick()}>alexandereffendy.com</Button>
               </section>
             
-              {/* songs */}
-              {/* website portfolio */}
             </SheetContent>
           </Sheet>
           <audio ref={audioRef} src={dragon} preload="auto" loop={true}/>
@@ -217,14 +211,9 @@ const Home = () => {
               <div onClick={() => setIsSettingOpen(false)}><SongIcon /></div>
             </DrawerTrigger>
             <DrawerContent className="grid place-items-center">
-            <div className="z-[20] fixed bottom-5 right-5 hover:cursor-pointer">
-            <div className="my-auto h-[50px] w-[50px] bg-black" onClick={tooglePlayPause}/>
-          </div>
-            <DrawerHeader>
-            </DrawerHeader>
-            <DrawerFooter>
-            
-            </DrawerFooter>
+              <div className="z-[20] fixed bottom-5 right-5 hover:cursor-pointer">
+                <div className="my-auto h-[50px] w-[50px] bg-black" onClick={tooglePlayPause}/>
+              </div>
             </DrawerContent>
           </Drawer>
       

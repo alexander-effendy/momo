@@ -87,8 +87,8 @@ body, html {
 }
 
 .duration {
-  transition-duration: 5000ms;
-  animation-duration: 5000ms;
+  transition-duration: 3000ms;
+  animation-duration: 3000ms;
 }
 
 .animate-colorFade {
