@@ -164,10 +164,10 @@ const Home = () => {
           style={{ zIndex: 60 }}
         />
 
-        <div className={`${isLoading ? 'opacity-0' : 'opacity-100'} transition-opacity duration ease-in-out`}>
+        <div className={`${isLoading ? 'opacity-0' : 'opacity-100'} transition-opacity duration-100 ease-in-out`}>
           <Button onClick={() => handleSettingToggle()} className="pomodoro-icon select-none rounded-[10px] hover:bg-[#234121] hover:text-white"
             style={{ zIndex: 71 }}
-          >{isSettingOpen ? 'close' : 'Settings'}</Button>
+          >{isSettingOpen ? 'Close' : 'Settings'}</Button>
           {isSettingOpen &&
             <div className="absolute top-[80px] left-[20px]">
               <SettingDialog />

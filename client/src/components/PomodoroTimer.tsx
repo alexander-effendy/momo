@@ -108,6 +108,7 @@ const PomodoroTimer = () => {
       className={`flex flex-col select-none ${mobile && 'mt-[-50px]'}`}
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
+      style={{ zIndex: 70 }}
     >
       <div className="relative bg-background">
         <svg className="w-[250px] h-[250px] lg:w-[350px] lg:h-[350px]">
