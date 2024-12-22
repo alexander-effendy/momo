@@ -1,8 +1,8 @@
 import { useState, useRef, useLayoutEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Lottie from 'lottie-react';
 
 // =================================== asset imports =================================== //
-import dragon from '@/assets/songs/coc-dragon-palace.mp3'
 import ghibliForest from '@/assets/walpaper/ghibliForest.jpg';
 import BridgeWater from '@/assets/walpaper/BridgeWater.jpg';
 import DeerWater from '@/assets/walpaper/DeerWater.jpg';
@@ -12,10 +12,10 @@ import ghibliPlane from '@/assets/walpaper/ghibliPlane.jpg';
 import totoro from '@/assets/walpaper/totoro.webp';
 import Umbrella from '@/assets/walpaper/Umbrella.png';
 import Anime from '@/assets/walpaper/Anime.jpg';
-import Lottie from 'lottie-react';
 import leaf from '@/assets/svg/leaf.json';
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { Button } from '@/components/ui/button';
+import songPlay from '@/assets/svg/song-play.json';
 
 // =================================== ui imports =================================== //
 import {
@@ -31,12 +31,13 @@ import {
   Drawer,
   DrawerContent,
   DrawerTrigger,
+  DrawerTitle
 } from "@/components/ui/drawer"
 
 // =================================== components imports =================================== //
 import LeafIcon from '@/assets/LeafIcon';
-import SongIcon from '@/assets/SongIcon';
 import PomodoroTimer from '@/components/PomodoroTimer';
+import SongDropDown from '@/components/SongDropDown';
 
 const Home = () => {
 
@@ -63,7 +64,6 @@ const Home = () => {
   const [currentWalpaper, setCurrentWalpaper] = useState<string>(ghibliForest);
 
   const scrollImageRef = useRef<HTMLDivElement>(null);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
 
   const handleImageClick = (src: string) => {
@@ -114,23 +114,6 @@ const Home = () => {
     )
   };
   
-  const tooglePlayPause = () => {
-    const prevValue = isPlaying;
-    setIsPlaying(!prevValue);
-    if (audioRef.current) {
-      if (!prevValue) {
-        audioRef.current.play();
-      } else {
-        audioRef.current.pause();
-      }
-    };
-    const scrollPosition = scrollImageRef.current?.scrollTop || 0;
-    setTimeout(() => {
-      if (scrollImageRef.current) {
-        scrollImageRef.current.scrollTop = scrollPosition;
-      }
-    }, 0);
-  };
 
   const handleSettingToggle = () => {    
     setIsSettingOpen((isSettingOpen) => !isSettingOpen);
@@ -143,7 +126,7 @@ const Home = () => {
   useLayoutEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2000);
+    }, 1000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -167,7 +150,13 @@ const Home = () => {
         <div className={`${isLoading ? 'opacity-0' : 'opacity-100'} transition-opacity duration-100 ease-in-out`}>
           <Button onClick={() => handleSettingToggle()} className="pomodoro-icon select-none rounded-[10px] hover:bg-[#234121] hover:text-white"
             style={{ zIndex: 71 }}
-          >{isSettingOpen ? 'Close' : 'Settings'}</Button>
+          >{isSettingOpen ? 'Close' : 'Setting'}</Button>
+          {isSettingOpen &&
+            <section className="absolute top-5 left-[240px] flex gap-[15px]">
+              {/* <div className="rounded-[50px] bg-blue-200 text-black h-[40px]">Img</div>
+              <div className="rounded-[50px] bg-blue-200 text-black h-[40px]">Song</div> */}
+            </section>
+          }
           {isSettingOpen &&
             <div className="absolute top-[80px] left-[20px]">
               <SettingDialog />
@@ -203,15 +192,22 @@ const Home = () => {
             
             </SheetContent>
           </Sheet>
-          <audio ref={audioRef} src={dragon} preload="auto" loop={true}/>
+
           <Drawer>
-            <DrawerTrigger>
-              <div onClick={() => setIsSettingOpen(false)}><SongIcon /></div>
+            <DrawerTrigger className="hover:cursor-pointer z-[100]">
+              <Lottie 
+                onClick={() => {
+                  setIsSettingOpen(false);
+                  setIsPlaying(isPlaying);
+                }} 
+                className=" fixed bottom-3 right-3 h-[40px] w-[40px] z-[100]" 
+                animationData={songPlay} 
+                loop={isPlaying} 
+              />
             </DrawerTrigger>
-            <DrawerContent className="grid place-items-center">
-              <div className="z-[20] fixed bottom-5 right-5 hover:cursor-pointer">
-                <div className="my-auto h-[50px] w-[50px] bg-black" onClick={tooglePlayPause}/>
-              </div>
+            <DrawerContent className="bg-[#071b20]">
+              <DrawerTitle></DrawerTitle>
+              <SongDropDown />
             </DrawerContent>
           </Drawer>
       
@@ -221,7 +217,6 @@ const Home = () => {
         </div>
       </div>
     </div>
-    
   )
 }
 
