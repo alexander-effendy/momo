@@ -194,3 +194,17 @@ body, html {
   background-color: transparent;
   color: yellow;
 }
+
+.soft-scrollbar::-webkit-scrollbar {
+  height: 4px;
+}
+
+.soft-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(29, 88, 133, 0.4);
+  border-radius: 30px;
+}
+
+/* soft the scrollbar track */
+.soft-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}

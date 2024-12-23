@@ -3,6 +3,7 @@ import './index.css';
 import './effects.css';
 
 import Pages from './Pages';
+import { SearchProvider } from "./useContext";
 
 import { KindeProvider } from "@kinde-oss/kinde-auth-react";
 
@@ -16,9 +17,12 @@ const App = () => {
 		  redirectUri='http://localhost:5173'
 		  logoutUri='http://localhost:5173'
 	  > 
-      <BrowserRouter>
-        <Pages />
-      </BrowserRouter>
+      <SearchProvider>
+        <BrowserRouter>
+          <Pages />
+        </BrowserRouter>
+      </SearchProvider>
+      
     </KindeProvider>
   )
 }
