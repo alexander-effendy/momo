@@ -43,7 +43,7 @@ export const SearchProvider = ({ children }: { children: ReactNode }) => {
       default: return "";
     }
   };
-
+  
   const togglePlayPause = (song: string) => {
     if (audioRef.current) {
       // Switch to a new song

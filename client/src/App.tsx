@@ -3,7 +3,7 @@ import './index.css';
 import './effects.css';
 
 import Pages from './Pages';
-import { SearchProvider } from "./useContext";
+import { SearchProvider } from "@/UseContext";
 
 import { KindeProvider } from "@kinde-oss/kinde-auth-react";
 

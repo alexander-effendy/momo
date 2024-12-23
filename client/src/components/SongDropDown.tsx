@@ -9,7 +9,7 @@ import HabitCover from "@/assets/walpaper/SongWalpaper/HabitCover.png";
 import { CiPlay1 } from "react-icons/ci";
 import { CiPause1 } from "react-icons/ci";
 
-import { SearchContext } from "@/useContext";
+import { SearchContext } from "@/UseContext";
 
 const SongDropDown = () => {
   const { currentSongContext, isPlaying, togglePlayPause } =
