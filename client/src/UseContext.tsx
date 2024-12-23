@@ -2,6 +2,9 @@ import { createContext, useState, Dispatch, SetStateAction, ReactNode, useRef } 
 
 import Paris from '../src/assets/songs/good-morning-paris.mp3';
 import Love from '@/assets/songs/in-love.mp3';
+import City from '@/assets/songs/my-city.mp3';
+import Caffeine from '@/assets/songs/caffeine.mp3';
+import Habit from '@/assets/songs/habit.mp3';
 
 interface SearchContextType {
   currentSongContext: string | undefined;
@@ -34,6 +37,9 @@ export const SearchProvider = ({ children }: { children: ReactNode }) => {
     switch (song) {
       case "Paris": return Paris;
       case "Love": return Love;
+      case "City": return City;
+      case "Caffeine": return Caffeine;
+      case "Habit": return Habit;
       default: return "";
     }
   };

@@ -2,6 +2,9 @@ import { useContext } from "react";
 
 import ParisCover from "@/assets/walpaper/SongWalpaper/ParisCover.png";
 import JerryCover from "@/assets/walpaper/SongWalpaper/Jerry.png";
+import CityCover from "@/assets/walpaper/SongWalpaper/CityCover.png";
+import CaffeineCover from "@/assets/walpaper/SongWalpaper/CaffeineCover.png";
+import HabitCover from "@/assets/walpaper/SongWalpaper/HabitCover.png";
 
 import { CiPlay1 } from "react-icons/ci";
 import { CiPause1 } from "react-icons/ci";
@@ -9,7 +12,8 @@ import { CiPause1 } from "react-icons/ci";
 import { SearchContext } from "@/useContext";
 
 const SongDropDown = () => {
-  const { currentSongContext, isPlaying, togglePlayPause } = useContext(SearchContext);
+  const { currentSongContext, isPlaying, togglePlayPause } =
+    useContext(SearchContext);
 
   return (
     <div className="soft-scrollbar flex h-[160px] w-full overflow-x-auto overflow-y-hidden bg-[#071b20] gap-2 pt-[5px]">
@@ -26,6 +30,27 @@ const SongDropDown = () => {
         togglePlayPause={() => togglePlayPause("Love")}
         imgSrc={JerryCover}
       />
+
+      <SongComponent
+        title="My City"
+        isPlaying={isPlaying && currentSongContext === "City"}
+        togglePlayPause={() => togglePlayPause("City")}
+        imgSrc={CityCover}
+      />
+
+      <SongComponent
+        title="Caffeine"
+        isPlaying={isPlaying && currentSongContext === "Caffeine"}
+        togglePlayPause={() => togglePlayPause("Caffeine")}
+        imgSrc={CaffeineCover}
+      />
+
+      <SongComponent
+        title="Habit"
+        isPlaying={isPlaying && currentSongContext === "Habit"}
+        togglePlayPause={() => togglePlayPause("Habit")}
+        imgSrc={HabitCover}
+      />
     </div>
   );
 };
@@ -37,13 +62,16 @@ interface SongComponentProps {
   imgSrc: any;
 }
 
-const SongComponent: React.FC<SongComponentProps> = ({ title, isPlaying, togglePlayPause, imgSrc }) => {
+const SongComponent: React.FC<SongComponentProps> = ({
+  title,
+  isPlaying,
+  togglePlayPause,
+  imgSrc,
+}) => {
   return (
-    <div
-      className="relative flex flex-col h-[50px] items-center hover:cursor-pointer hover:opacity-100 opacity-90"
-    >
+    <div className={`relative flex flex-col h-[50px] items-center hover:cursor-pointer hover:opacity-100 ${isPlaying ? 'opacity-100' : 'opacity-60'} transition-opacity duration-500`}>
       <div className="size-[200px] object-cover flex justify-center items-center">
-        <img className="w-[100px] h-[100px]" src={imgSrc} alt={title} />
+        <img className="rounded-[5px] w-[100px] h-[100px]" src={imgSrc} alt={title} />
 
         {!isPlaying && (
           <div
