@@ -1,6 +1,7 @@
 import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import './effects.css';
+import './caption.css';
 
 import Pages from './Pages';
 import { SearchProvider } from "@/UseContext";

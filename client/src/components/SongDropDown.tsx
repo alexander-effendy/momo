@@ -20,9 +20,9 @@ const SongDropDown = () => {
     useContext(SearchContext);
 
   return (
-    <div className="soft-scrollbar flex h-[160px] w-full overflow-x-auto overflow-y-hidden bg-[#071b20] gap-2 pt-[5px]">
+    <div className="soft-scrollbar flex h-[155px] w-full overflow-x-auto overflow-y-hidden bg-[#071b20] gap-2 pt-[5px]">
       <SongComponent
-        title="Morning Paris"
+        title="Paris"
         isPlaying={isPlaying && currentSongContext === "Paris"}
         togglePlayPause={() => togglePlayPause("Paris")}
         imgSrc={ParisCover}
@@ -119,7 +119,7 @@ const SongComponent: React.FC<SongComponentProps> = ({
           </div>
         )}
       </div>
-      <span className="text-white text-wrap mt-3">{title}</span>
+      <span className="caption text-white text-wrap mt-3">{title}</span>
     </div>
   );
 };

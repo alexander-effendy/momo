@@ -1,0 +1,38 @@
+@font-face {
+  font-family: 'offbit';
+  src: url('@/assets/font/offbit/TTF/OffBitTrial-101Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.caption {
+  font-family: input-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New;
+  font-size: 13px;
+  /* text-transform: uppercase; */
+  line-height: 160%;
+  letter-spacing: -0.02em;
+}
+
+.caption2 {
+  font-family: input-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New;
+  font-size: 16px;
+  /* text-transform: uppercase; */
+  line-height: 160%;
+  letter-spacing: 0.09em;
+}
+
+.offbit {
+  font-family: 'offbit', ui-sans-serif;
+  /* font-size: 25px; */
+  font-weight: normal; /* Adjusted to match the @font-face declaration */
+  text-transform: uppercase;
+  letter-spacing: 0.04rem;
+}
+
+.offbit2 {
+  font-family: 'offbit', ui-sans-serif;
+  font-size: 25px;
+  color: white;
+  font-weight: normal; /* Adjusted to match the @font-face declaration */
+  text-transform: uppercase;
+}
