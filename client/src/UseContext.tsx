@@ -5,6 +5,10 @@ import Love from '@/assets/songs/in-love.mp3';
 import City from '@/assets/songs/my-city.mp3';
 import Caffeine from '@/assets/songs/caffeine.mp3';
 import Habit from '@/assets/songs/habit.mp3';
+import Chill from '@/assets/songs/chill.mp3';
+import Rainy from '@/assets/songs/rainy.mp3';
+import Sunrise from '@/assets/songs/sunrise.mp3';
+import Heart from '@/assets/songs/heart.mp3';
 
 interface SearchContextType {
   currentSongContext: string | undefined;
@@ -40,6 +44,11 @@ export const SearchProvider = ({ children }: { children: ReactNode }) => {
       case "City": return City;
       case "Caffeine": return Caffeine;
       case "Habit": return Habit;
+      case "Chill": return Chill;
+      case "Rainy": return Rainy;
+      case "Sunrise": return Sunrise;
+      case "Heart": return Heart;
+
       default: return "";
     }
   };

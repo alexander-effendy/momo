@@ -5,6 +5,10 @@ import JerryCover from "@/assets/walpaper/SongWalpaper/Jerry.png";
 import CityCover from "@/assets/walpaper/SongWalpaper/CityCover.png";
 import CaffeineCover from "@/assets/walpaper/SongWalpaper/CaffeineCover.png";
 import HabitCover from "@/assets/walpaper/SongWalpaper/HabitCover.png";
+import RainyCover from "@/assets/walpaper/SongWalpaper/Rainy.png";
+import SunriseCover from "@/assets/walpaper/SongWalpaper/Sunrise.png";
+import ChillCover from "@/assets/walpaper/SongWalpaper/ChillCover.png";
+import HeartCover from "@/assets/walpaper/SongWalpaper/HeartCover.png";
 
 import { CiPlay1 } from "react-icons/ci";
 import { CiPause1 } from "react-icons/ci";
@@ -18,38 +22,58 @@ const SongDropDown = () => {
   return (
     <div className="soft-scrollbar flex h-[160px] w-full overflow-x-auto overflow-y-hidden bg-[#071b20] gap-2 pt-[5px]">
       <SongComponent
-        title="Good Morning in Paris"
+        title="Morning Paris"
         isPlaying={isPlaying && currentSongContext === "Paris"}
         togglePlayPause={() => togglePlayPause("Paris")}
         imgSrc={ParisCover}
       />
-
       <SongComponent
         title="I am in love"
         isPlaying={isPlaying && currentSongContext === "Love"}
         togglePlayPause={() => togglePlayPause("Love")}
         imgSrc={JerryCover}
       />
-
       <SongComponent
         title="My City"
         isPlaying={isPlaying && currentSongContext === "City"}
         togglePlayPause={() => togglePlayPause("City")}
         imgSrc={CityCover}
       />
-
       <SongComponent
         title="Caffeine"
         isPlaying={isPlaying && currentSongContext === "Caffeine"}
         togglePlayPause={() => togglePlayPause("Caffeine")}
         imgSrc={CaffeineCover}
       />
-
       <SongComponent
         title="Habit"
         isPlaying={isPlaying && currentSongContext === "Habit"}
         togglePlayPause={() => togglePlayPause("Habit")}
         imgSrc={HabitCover}
+      />
+      <SongComponent
+        title="Chill"
+        isPlaying={isPlaying && currentSongContext === "Chill"}
+        togglePlayPause={() => togglePlayPause("Chill")}
+        imgSrc={ChillCover}
+      />
+      <SongComponent
+        title="Rainy"
+        isPlaying={isPlaying && currentSongContext === "Rainy"}
+        togglePlayPause={() => togglePlayPause("Rainy")}
+        imgSrc={RainyCover}
+      />
+      <SongComponent
+        title="Sunrise"
+        isPlaying={isPlaying && currentSongContext === "Sunrise"}
+        togglePlayPause={() => togglePlayPause("Sunrise")}
+        imgSrc={SunriseCover}
+      />
+      <SongComponent
+        title="Heart"
+        isPlaying={isPlaying && currentSongContext === "Heart"}
+        togglePlayPause={() => togglePlayPause("Heart")}
+        imgSrc={HeartCover}
       />
     </div>
   );
