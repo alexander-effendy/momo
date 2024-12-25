@@ -11,16 +11,9 @@ body, html {
   height: 100vh;
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
-  overflow-y: hidden;
+  overflow: hidden;
   overflow: scroll;
   -webkit-overflow-scrolling: touch;
-}
-
-.content {
-  flex: 1;
-  padding: env(safe-area-inset-top, 0) env(safe-area-inset-right, 0) env(safe-area-inset-bottom, 0) env(safe-area-inset-left, 0);
-  box-sizing: border-box;
 }
 
 .full-height {
